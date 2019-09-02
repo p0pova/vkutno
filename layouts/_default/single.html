@@ -13,10 +13,12 @@
 					{{ end }}
 				</ul>
 			</div>
+			<button id="checkout-buy-button" data-id="{{.Params.id}}" data-title="{{.Params.title}}" data-price="{{.Params.price}}">Buy</button>
 			<div>
 				{{ template "_internal/disqus.html" . }}
 			</div>
 		</article>
 	</main>
+	{{.Params.pop}}
 {{ partial "sidebar.html" . }}
 {{ end }}

@@ -4,7 +4,7 @@ licenselink = "https://github.com/vimux/blank/blob/master/LICENSE"
 description = "Starter Hugo theme for developers."
 homepage = "https://github.com/vimux/blank/"
 tags = ["blog", "plain", "blank", "starter", "development"]
-features = ["blog"]
+features = ["product"]
 min_version = 0.20
 
 [author]
