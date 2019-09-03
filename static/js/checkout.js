@@ -4,7 +4,8 @@
 
         this.checkout = new Checkout();
         this.button = document.getElementById('checkout-buy-button');
-        this.button.addEventListener('click', this.buy.bind(this));
+        if (this.button != undefined)
+            this.button.addEventListener('click', this.buy.bind(this));
     };
 
     this.buy = (event) => {
@@ -20,7 +21,12 @@
             console.log('init checkout');
 
             this.products = {};
+            this.checkoutCountObj = document.getElementById('checkout-bar-count');
             this.getStor();
+        };
+
+        this.showCount = () => {
+            this.checkoutCountObj.innerHTML = this.getCount();
         };
 
         this.getCount = () => {
@@ -51,12 +57,24 @@
             this.setStor();
         };
 
+        this.clear = (id) => {
+            if (this.products[id] == undefined) {
+                return;
+            };
+            delete this.products[id];
+            this.setStor();
+        };
+
         this.setStor = () => {
             window.localStorage['products'] = JSON.stringify(this.products);
+            this.showCount();
         }
-
+        
         this.getStor = () => {
-            this.products = JSON.parse(window.localStorage['products']);
+            if (window.localStorage['products'] != undefined) {
+                this.products = JSON.parse(window.localStorage['products']);
+                this.showCount();
+            }
         }
 
         this.init();
