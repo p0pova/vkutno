@@ -3,17 +3,41 @@
         console.log('INIT CHECKOUT');
 
         this.checkout = new Checkout();
-        this.button = document.getElementById('checkout-buy-button');
-        if (this.button != undefined)
-            this.button.addEventListener('click', this.buy.bind(this));
+        this.buttonBuy = document.getElementById('checkout-buy-button');
+        this.ulObj = document.getElementById('checkout-list');
+        this.buttonOrder = document.getElementById('checkout-button-order');
+        this.buttonOrder.addEventListener('click', this.send.bind(this));
+        if (this.buttonBuy != undefined)
+            this.buttonBuy.addEventListener('click', this.buy.bind(this));
+        this.render();
+    };
+
+    this.render = () => {
+        var html = '';
+        for (var id in this.checkout.products) {
+            html += '<li>' + this.checkout.products[id].product.name + '</li>';
+        };
+        this.ulObj.innerHTML = html;
     };
 
     this.buy = (event) => {
         this.checkout.add(new Product(
-            this.button.dataset.id,
-            this.button.dataset.title,
-            this.button.dataset.price
+            this.buttonBuy.dataset.id,
+            this.buttonBuy.dataset.title,
+            this.buttonBuy.dataset.price
         ));
+        this.render();
+    };
+
+    this.send = (event) => {
+        var text = "text%0a \
+        text%0a \
+        text";
+        fetch(
+            "https://api.telegram.org/bot" + bot + "/sendMessage?chat_id=" + room + "&text=" + text,
+            {
+                method: 'GET'
+            });
     };
 
     var Checkout = function() {

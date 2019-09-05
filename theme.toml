@@ -7,6 +7,9 @@ tags = ["blog", "plain", "blank", "starter", "development"]
 features = ["product"]
 min_version = 0.20
 
+[params]
+pop1 = "popoff"
+
 [author]
   name = "Vimux"
   homepage = "https://github.com/vimux"
