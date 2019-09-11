@@ -4,7 +4,7 @@
 		{{ range where .Data.Pages "Section" "product" }}
 			{{ .Render "summary" }}
 		{{ end }}
-		{{ partial "pagination.html" . }}
+		<!-- {{ partial "pagination.html" . }} -->
 	</main>
-{{ partial "sidebar.html" . }}
+<!-- {{ partial "sidebar.html" . }} -->
 {{ end }}

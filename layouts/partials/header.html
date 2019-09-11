@@ -1,15 +1,19 @@
 <header>
-	<a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-	{{ with .Site.Menus.main }}
-	<nav>
-		<ul>
-			{{ range . }}
-			<li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-			{{ end }}
-		</ul>
-	</nav>
-	{{ end }}
-	{{ partial "checkout_bar.html" . }}
+	<div class="block-wrapper horizontal-flex">
+		<div class="logo">
+			<a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+		</div>
+		{{ with .Site.Menus.main }}
+		<nav class="main-menu">
+			<ul>
+				{{ range . }}
+				<li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+				{{ end }}
+			</ul>
+		</nav>
+		{{ end }}
+		{{ partial "checkout_bar.html" . }}
+	</div>
 	{{ partial "checkout.html" . }}
 </header>
 <script>
