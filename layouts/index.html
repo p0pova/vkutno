@@ -1,5 +1,12 @@
 {{ define "main" }}
 	<main>
+		<div class="index-title-block">
+			<h1>{{ .Title }}</h1>
+			<h2>{{ .Params.subtitle }}</h2>
+		</div>
+		<div class="single-content">
+				{{ .Content }}
+		</div>
 		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
 		{{ range where .Data.Pages "Section" "product" }}
 			{{ .Render "summary" }}

@@ -14,6 +14,27 @@ header {
     padding: 2.5em 0;
 }
 
+.index-title-block {
+    background: url('fon.jpg') fixed no-repeat;
+    background-size: contain;
+    height: 17em;
+}
+
+.index-title-block h1, .index-title-block h2 {
+    background-color: inherit;
+    color: #fff;
+    text-align: center;
+}
+
+.index-title-block h1 {
+    padding: 1.5em 0 0.2em 0;
+    font-size: 36pt
+}
+
+.index-title-block h2 {
+    font-size: 18pt;
+}
+
 .wrapper {
     min-height: 100%;
     position: relative;
@@ -84,6 +105,9 @@ h1 {
     padding: 2em 0;
     color: #fff;
     text-align: center;
+    font-size: 1.5em;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
 }
 
 /* CHECKOUT */
@@ -110,7 +134,22 @@ h1 {
     font-size: 10pt;
     padding: 0.3em;
     margin: 1.2em 0 0 1.7em;
-  }
+}
+
+/* CONTENT */
+
+.single-content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2em;
+    color: #666;
+}
+
+.single-content h2 {
+    color: #00b506;
+    font-size: 18pt;
+    margin: 1em 0 1em 3em;
+}
 
 footer {
     position: absolute;

@@ -3,22 +3,22 @@
 		<article>
 			<h1>{{ .Title }}</h1>
 			<!-- <time>{{ .Date.Format "02.01.2006 15:04" }}</time> -->
-			<div>
+			<div class="single-content">
 				{{ .Content }}
-			</div>
-			<div>
-				<ul id="tags">
-					{{ range .Params.tags }}
-					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-					{{ end }}
-				</ul>
-			</div>
-			{{ if isset .Params "price" }}
-			<!-- checkout-buy-button used in JS -->
-			<button id="checkout-buy-button" data-id="{{.Params.id}}" data-title="{{.Params.title}}" data-price="{{.Params.price}}">Buy</button>
-			{{ end }}
-			<div>
-				{{ template "_internal/disqus.html" . }}
+				<div>
+					<ul id="tags">
+						{{ range .Params.tags }}
+						<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+						{{ end }}
+					</ul>
+				</div>
+				{{ if isset .Params "price" }}
+				<!-- checkout-buy-button used in JS -->
+				<button id="checkout-buy-button" data-id="{{.Params.id}}" data-title="{{.Params.title}}" data-price="{{.Params.price}}">Buy</button>
+				{{ end }}
+				<!-- <div>
+					{{ template "_internal/disqus.html" . }}
+				</div> -->
 			</div>
 		</article>
 	</main>
