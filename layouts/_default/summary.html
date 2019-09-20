@@ -1,15 +1,19 @@
-<article>
-	<div class="single-content">
-		<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-		<!-- <time>{{ .Date.Format "02.01.2006 15:04" }}</time> -->
-		{{ range .Params.tags }}
-		<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-		{{ end }}
-		<div>
-			{{ .Summary }}
-			{{ if .Truncated }}
-				<a href="{{ .Permalink }}">Read more...</a>
+<article class="list-product">
+	<div class="product">
+		<a href="{{ .Permalink }}">
+			<h2>{{ .Title }} </h2>
+			<div class="price">{{ .Params.price }} грн.</div>
+			<!-- <time>{{ .Date.Format "02.01.2006 15:04" }}</time> -->
+			{{ range .Params.tags }}
+			<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 			{{ end }}
-		</div>
+			<img src="{{.Params.image}}"/>
+			<div class="description">
+				{{ .Summary }}
+				{{ if .Truncated }}
+					<a class="read-more" href="{{ .Permalink }}">Read more...</a>
+				{{ end }}
+			</div>
+		</a>
 	</div>
 </article>

@@ -16,7 +16,7 @@ header {
 
 .index-title-block {
     background: url('fon.jpg') fixed no-repeat;
-    background-size: contain;
+    background-size: cover;
     height: 17em;
 }
 
@@ -149,6 +149,54 @@ h1 {
     color: #00b506;
     font-size: 18pt;
     margin: 1em 0 1em 3em;
+}
+
+.list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.list-product {
+    width: 32%;
+    min-width: 300px;
+}
+.list-product img {
+    width: 100%;
+}
+
+.list-product .product {
+    margin: 0 6px;
+}
+
+.list-product .product a {
+    color: #666;
+    text-decoration: none;
+}
+
+.list-product .product a.read-more {
+    font-size: 0.8em;
+    color: chartreuse;
+    text-decoration: underline;
+}
+
+.list-product .product h2 {
+    font-size: 1.5em;
+    color: #00b506;
+}
+
+.list-product .product .price {
+    margin-right: 2em;
+    text-align: right;
+    font-size: 1.2em;
+    color: darkgreen;
+}
+
+.list-product .product .description {
+    margin: 12px 6px;
+    font-size: 1em;
 }
 
 footer {

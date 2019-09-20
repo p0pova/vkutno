@@ -8,9 +8,11 @@
 				{{ .Content }}
 		</div>
 		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
-		{{ range where .Data.Pages "Section" "product" }}
-			{{ .Render "summary" }}
-		{{ end }}
+		<div class="list-wrapper">
+			{{ range where .Data.Pages "Section" "product" }}
+				{{ .Render "summary" }}
+			{{ end }}
+		</div>
 		<!-- {{ partial "pagination.html" . }} -->
 	</main>
 <!-- {{ partial "sidebar.html" . }} -->

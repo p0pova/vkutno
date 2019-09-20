@@ -7,10 +7,11 @@
 			{{ with .Content }}<div>{{ . }}</div>{{ end }}
 		</div>
 		{{ end }}
-
-		{{ range .Paginator.Pages }}
-			{{ .Render "summary" }}
-		{{ end }}
+		<div class="list-wrapper">
+			{{ range .Paginator.Pages }}
+				{{ .Render "summary" }}
+			{{ end }}
+		</div>
 		<!-- {{ partial "pagination.html" . }} -->
 	</main>
 <!-- {{ partial "sidebar.html" . }} -->
