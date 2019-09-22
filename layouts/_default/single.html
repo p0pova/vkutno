@@ -3,6 +3,23 @@
 		<article>
 			<h1>{{ .Title }}</h1>
 			<!-- <time>{{ .Date.Format "02.01.2006 15:04" }}</time> -->
+			{{ if isset .Params "price" }}
+			<div class="single-content">
+				<div class="product-wrapper ">
+					<div class="product-img">
+						<img src="{{.Params.image}}"/>
+					</div>
+					<div class="product-buy-block">
+						<div class="product-price">
+							{{ .Params.price }} грн.
+						</div>
+						<div class="product-buy-btn">
+							<button id="checkout-buy-button" data-id="{{.Params.id}}" data-title="{{.Params.title}}" data-price="{{.Params.price}}">Купить</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{ end }}
 			<div class="single-content">
 				{{ .Content }}
 				<div>
@@ -12,10 +29,6 @@
 						{{ end }}
 					</ul>
 				</div>
-				{{ if isset .Params "price" }}
-				<!-- checkout-buy-button used in JS -->
-				<button id="checkout-buy-button" data-id="{{.Params.id}}" data-title="{{.Params.title}}" data-price="{{.Params.price}}">Buy</button>
-				{{ end }}
 				<!-- <div>
 					{{ template "_internal/disqus.html" . }}
 				</div> -->

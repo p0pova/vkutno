@@ -7,6 +7,22 @@
 		<div class="single-content">
 				{{ .Content }}
 		</div>
+		{{ $blocks := getJSON "/data/index.json" }}
+		<div class="single-content">
+			<div class="index-flex">
+			{{ range $blocks }}
+				<div class="index-block">
+					<div class="index-block-img">
+						<img src="{{ .image }}">
+					</div>
+					<h3>{{ .title}}</h3>
+					<div class="index-block-text">
+						{{ .description }}
+					</div>
+				</div>
+			{{ end }}
+			</div>
+		</div>
 		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
 		<div class="list-wrapper">
 			{{ range where .Data.Pages "Section" "product" }}
