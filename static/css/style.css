@@ -178,7 +178,76 @@ h1 {
 /* CHECKOUT */
 
 #checkout-wrapper {
-    display: none;
+    max-width: 600px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+ul.checkout-list {
+    list-style: circle;
+}
+
+ul.list-title {
+    list-style: none;
+}
+
+ul.list-title li span {
+    text-align: center;
+    font-weight: bold;
+}
+
+.checkout-list li {
+    margin: 0 0 1em 0;
+}
+
+.checkout-list li span {
+    display: inline-block;
+}
+
+.checkout-list li .checkout-list-name {
+    width: 40%;
+}
+
+.checkout-list li .checkout-list-count {
+    width: 4em;
+}
+
+.checkout-list li .checkout-list-price {
+    padding-left: 2em; 
+    text-align: right;
+    width: 6em;
+}
+
+ul.list-title li span.checkout-list-price {
+    text-align: center;
+}
+
+.checkout-sum-wrapper {
+    text-align: right;
+    font-size: 110%;
+    color: #000;
+}
+
+.checkout-user-block {
+    margin-top: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.checkout-user-block span {
+    width: 100px;
+    display: inline-block;
+}
+
+.checkout-user-block button {
+    margin: 0 0 0 2em;
+    background-color: black;
+    color: white;
+    padding: 1em 2em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
 }
 
 #checkout-bar {

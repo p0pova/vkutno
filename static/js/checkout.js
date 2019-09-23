@@ -5,6 +5,7 @@
         this.checkout = new Checkout();
         this.buttonBuy = document.getElementById('checkout-buy-button');
         this.ulObj = document.getElementById('checkout-list');
+        
         this.buttonOrder = document.getElementById('checkout-button-order');
         this.buttonOrder.addEventListener('click', this.send.bind(this));
         if (this.buttonBuy != undefined)
@@ -15,9 +16,16 @@
     this.render = () => {
         var html = '';
         for (var id in this.checkout.products) {
-            html += '<li>' + this.checkout.products[id].product.name + '</li>';
+            html += '<li data-id="' + this.checkout.products[id].product.id + '"><span class="checkout-list-name">' 
+                + this.checkout.products[id].product.name + 
+                '</span><input class="checkout-list-count" type="number" value="'
+                + this.checkout.products[id].count + 
+                '" /><span class="checkout-list-price">' 
+                + this.checkout.products[id].product.price + 
+                ' грн</span></li>';
         };
         this.ulObj.innerHTML = html;
+        this.checkout.showSum();
     };
 
     this.buy = (event) => {
@@ -26,7 +34,6 @@
             this.buttonBuy.dataset.title,
             this.buttonBuy.dataset.price
         ));
-        this.render();
     };
 
     this.send = (event) => {
@@ -46,11 +53,16 @@
 
             this.products = {};
             this.checkoutCountObj = document.getElementById('checkout-bar-count');
+            this.sumObj = document.getElementById('checkout-sum');
             this.getStor();
         };
 
         this.showCount = () => {
             this.checkoutCountObj.innerHTML = this.getCount();
+        };
+
+        this.showSum = () => {
+            this.sumObj.innerHTML = this.getSum();
         };
 
         this.getCount = () => {
@@ -59,6 +71,14 @@
                 count += this.products[id].count;
             };
             return count;
+        };
+
+        this.getSum = () => {
+            var sum = 0;
+            for (var id in this.products) {
+                sum += this.products[id].count * this.products[id].product.price;
+            };
+            return sum;
         };
 
         this.add = (product, count = 1) => {

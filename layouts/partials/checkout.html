@@ -1,6 +1,20 @@
 <div id="checkout-wrapper">
-    <ul id="checkout-list"></ul>
-    <div>Имя<input id="checkout-input-name" type="text" /></div>
-    <div>Телефон<input id="checkout-input-phone" type="text" /></div>
-    <button id="checkout-button-order">Заказать</button>
+    <ul class="checkout-list list-title">
+        <li>
+            <span class="checkout-list-name">Наименование</span>
+            <span class="checkout-list-count">шт</span>
+            <span class="checkout-list-price">цена</span>
+        </li>
+    </ul>
+    <ul id="checkout-list" class="checkout-list"></ul>
+    <div class="checkout-sum-wrapper">
+        Итого на сумму: <span id="checkout-sum">0</span> грн
+    </div>
+    <div class="checkout-user-block">
+        <div class="checkout-user-block-inputs">
+            <div><span>Имя</span><input id="checkout-input-name" type="text" /></div>
+            <div><span>Телефон</span><input id="checkout-input-phone" type="text" /></div>
+        </div>
+        <button id="checkout-button-order">Заказать</button>
+    </div>
 </div>
