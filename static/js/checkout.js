@@ -1,4 +1,6 @@
 (function() {
+    test = (e) => {console.log(e);}
+
     this.init = () => {
         console.log('INIT CHECKOUT');
 
@@ -7,10 +9,14 @@
         this.ulObj = document.getElementById('checkout-list');
         
         this.buttonOrder = document.getElementById('checkout-button-order');
-        this.buttonOrder.addEventListener('click', this.send.bind(this));
+        this.buttonUpdate = document.getElementById('checkout-update');
+        if (this.buttonOrder != undefined) {
+            this.buttonOrder.addEventListener('click', this.send.bind(this));
+            this.buttonUpdate.addEventListener('click', this.update.bind(this));
+            this.render();
+        }
         if (this.buttonBuy != undefined)
             this.buttonBuy.addEventListener('click', this.buy.bind(this));
-        this.render();
     };
 
     this.render = () => {
@@ -18,15 +24,31 @@
         for (var id in this.checkout.products) {
             html += '<li data-id="' + this.checkout.products[id].product.id + '"><span class="checkout-list-name">' 
                 + this.checkout.products[id].product.name + 
-                '</span><input class="checkout-list-count" type="number" value="'
+                '</span><input id="' + this.getIdInputCount(this.checkout.products[id].product.id) + '" class="checkout-list-count" type="number" value="'
                 + this.checkout.products[id].count + 
                 '" /><span class="checkout-list-price">' 
                 + this.checkout.products[id].product.price + 
-                ' грн</span></li>';
+                ' грн</span><span id="' + this.getIdDeleteBtn(this.checkout.products[id].product.id) + '" class="checkout-list-delete">x</span></li>';
         };
         this.ulObj.innerHTML = html;
         this.checkout.showSum();
+        for (var id in this.checkout.products) {
+            var _this = this;
+            var el = document.getElementById(this.getIdDeleteBtn(this.checkout.products[id].product.id));
+            el.onclick = function(event) {
+                _this.checkout.clear(id);
+                _this.render();
+            }
+        }
     };
+
+    this.update = () => {
+        for (var id in this.checkout.products) {
+            var count = document.getElementById(this.getIdInputCount(this.checkout.products[id].product.id)).value;
+            this.checkout.set(id, count);
+        }
+        this.render();
+    }
 
     this.buy = (event) => {
         this.checkout.add(new Product(
@@ -35,6 +57,14 @@
             this.buttonBuy.dataset.price
         ));
     };
+
+    this.getIdInputCount = (id) => {
+        return 'input-count-' + id;
+    }
+
+    this.getIdDeleteBtn = (id) => {
+        return 'delete-btn-' + id;
+    }
 
     this.send = (event) => {
         var text = "text%0a \
@@ -68,7 +98,7 @@
         this.getCount = () => {
             var count = 0;
             for (var id in this.products) {
-                count += this.products[id].count;
+                count += parseInt(this.products[id].count);
             };
             return count;
         };
@@ -95,6 +125,17 @@
                 return;
             };
             this.products[id].count -= count;
+            if (this.products[id].count <= 0) {
+                delete this.products[id];
+            };
+            this.setStor();
+        };
+
+        this.set = (id, count) => {
+            if (this.products[id] == undefined) {
+                return;
+            };
+            this.products[id].count = count;
             if (this.products[id].count <= 0) {
                 delete this.products[id];
             };

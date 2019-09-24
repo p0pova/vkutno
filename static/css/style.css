@@ -185,6 +185,7 @@ h1 {
 
 ul.checkout-list {
     list-style: circle;
+    min-width: 36em;
 }
 
 ul.list-title {
@@ -218,6 +219,16 @@ ul.list-title li span {
     width: 6em;
 }
 
+.checkout-list li .checkout-list-delete {
+    width: 1.5em;
+    text-align: center;
+    font-family: 'Roboto',Arial,sans-serif;
+    margin-left: 2em;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}
+
 ul.list-title li span.checkout-list-price {
     text-align: center;
 }
@@ -240,8 +251,8 @@ ul.list-title li span.checkout-list-price {
     display: inline-block;
 }
 
-.checkout-user-block button {
-    margin: 0 0 0 2em;
+.checkout-button {
+    margin: 0 2em 0 2em;
     background-color: black;
     color: white;
     padding: 1em 2em;
@@ -257,6 +268,7 @@ ul.list-title li span.checkout-list-price {
     background-repeat: no-repeat;
     margin-right: 2em;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .round {
@@ -268,6 +280,7 @@ ul.list-title li span.checkout-list-price {
     font-size: 10pt;
     padding: 0.3em;
     margin: 1.2em 0 0 1.7em;
+    text-align: center;
 }
 
 /* CONTENT */
