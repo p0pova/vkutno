@@ -368,6 +368,17 @@ ul.list-title li span.checkout-list-price {
     font-size: 1.5em;
 }
 
+.block-info {
+    border: 1px solid #234;
+    margin: 2em;
+    padding: 1em;
+    background-color: darkgreen;
+    color: chartreuse;
+    opacity: 0.8;
+    display: none;
+    text-align: center;
+}
+
 .product-buy-btn button {
     background-color: black;
     color: white;

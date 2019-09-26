@@ -7,9 +7,12 @@
         this.checkout = new Checkout();
         this.buttonBuy = document.getElementById('checkout-buy-button');
         this.ulObj = document.getElementById('checkout-list');
+        this.blockInfoObj = document.getElementById('block-info');
         
         this.buttonOrder = document.getElementById('checkout-button-order');
         this.buttonUpdate = document.getElementById('checkout-update');
+        this.inputName = document.getElementById('checkout-input-name');
+        this.inputPhone = document.getElementById('checkout-input-phone');
         if (this.buttonOrder != undefined) {
             this.buttonOrder.addEventListener('click', this.send.bind(this));
             this.buttonUpdate.addEventListener('click', this.update.bind(this));
@@ -45,7 +48,7 @@
     this.update = () => {
         for (var id in this.checkout.products) {
             var count = document.getElementById(this.getIdInputCount(this.checkout.products[id].product.id)).value;
-            this.checkout.set(id, count);
+            this.checkout.set(id, parseInt(count));
         }
         this.render();
     }
@@ -56,7 +59,13 @@
             this.buttonBuy.dataset.title,
             this.buttonBuy.dataset.price
         ));
+        this.info('Товар добавлен в корзину');
     };
+
+    this.info = (text) => {
+        this.blockInfoObj.innerHTML = text;
+        this.blockInfoObj.setAttribute('style', 'display: block');
+    }
 
     this.getIdInputCount = (id) => {
         return 'input-count-' + id;
@@ -66,10 +75,37 @@
         return 'delete-btn-' + id;
     }
 
+    this.setSendText = () => {
+        var text = 'Заказ с сайта %0a';
+        text += 'на сумму: ' + this.checkout.getSum() + ' грн %0a';
+        text += '======================================';
+        text += 'Имя: ' + this.inputName.value;
+        text += 'Телефон: ' + this.inputPhone.value;
+        text += '======================================';
+        for (var id in this.checkout.products) {
+            text += this.checkout.products[id].product.id + '. ' + this.checkout.products[id].product.name + ' - ' + this.checkout.products[id].count + ' шт %0a';
+        }
+
+        return text;
+    }
+
     this.send = (event) => {
+        if (this.checkout.getCount() == 0) {
+            this.info('Корзина пуста');
+            return;
+        }
+        if (this.inputName.value == '' || this.inputPhone.value == '') {
+            this.info('Не заполнены поля покупателя');
+            return;
+        }
         var text = "text%0a \
         text%0a \
         text";
+        var text = this.setSendText();
+        this.info('Заказ отправлен');
+        this.checkout.clearAll();
+        console.log(text);
+        return;
         fetch(
             "https://api.telegram.org/bot" + bot + "/sendMessage?chat_id=" + room + "&text=" + text,
             {
@@ -110,6 +146,12 @@
             };
             return sum;
         };
+
+        this.clearAll = () =>{
+            for (var id in this.products) {
+                this.clear(id);
+            };
+        }
 
         this.add = (product, count = 1) => {
             if (this.products[product.id] == undefined) {
