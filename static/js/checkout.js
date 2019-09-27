@@ -104,8 +104,6 @@
         var text = this.setSendText();
         this.info('Заказ отправлен');
         this.checkout.clearAll();
-        console.log(text);
-        return;
         fetch(
             "https://api.telegram.org/bot" + bot + "/sendMessage?chat_id=" + room + "&text=" + text,
             {
