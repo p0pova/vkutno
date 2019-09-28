@@ -25,7 +25,7 @@
 		</div>
 		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
 		<div class="list-wrapper">
-			{{ range where .Data.Pages "Section" "product" }}
+			{{ range .Paginator.Pages }}
 				{{ .Render "summary" }}
 			{{ end }}
 		</div>
