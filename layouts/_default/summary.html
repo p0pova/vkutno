@@ -2,7 +2,7 @@
 	<div class="product">
 		<a href="{{ .Permalink }}">
 			<h2>{{ .Title }} </h2>
-			<div class="price">{{ .Params.price }} грн.</div>
+			
 			<!-- <time>{{ .Date.Format "02.01.2006 15:04" }}</time> -->
 			{{ range .Params.tags }}
 			<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
@@ -10,10 +10,11 @@
 			<img src="{{.Params.image}}"/>
 			<div class="description">
 				{{ .Summary }}
-				{{ if .Truncated }}
-					<a class="read-more" href="{{ .Permalink }}">Read more...</a>
-				{{ end }}
+				<!-- {{ if .Truncated }}
+					<a class="read-more" href="{{ .Permalink }}">Подробнее...</a>
+				{{ end }} -->
 			</div>
+			<div class="price">{{ .Params.price }} грн.</div>
 		</a>
 	</div>
 </article>
