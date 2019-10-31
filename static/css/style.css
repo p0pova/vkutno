@@ -185,7 +185,6 @@ h1 {
 
 ul.checkout-list {
     list-style: circle;
-    min-width: 36em;
 }
 
 ul.list-title {
@@ -287,7 +286,7 @@ ul.list-title li span.checkout-list-price {
 
 .single-content {
     max-width: 960px;
-    min-width: 535px;
+    /* min-width: 535px; */
     margin: 0 auto;
     padding: 0 2em;
     color: #666;
@@ -449,6 +448,32 @@ footer a {
 
     .checkout-user-block {
         margin: 1em 0;
+    }
+
+    .checkout-user-block-inputs {
+        width: 100%;
+    }
+
+    .checkout-user-block-inputs div input {
+        width: 100%;
+        margin: 0.5em;
+    }
+
+    .checkout-sum-wrapper {
+        font-size: 85%;
+    }
+
+    #checkout-list li span.checkout-list-name {
+        width: 100%;
+    }
+
+    .product-buy-block {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .block-info {
+        margin: 2em auto;
     }
 
 }
